@@ -222,8 +222,18 @@ class SerialProxy():
             for motor_id in self.motors:
                 try:
                     state = self.dxl_io.get_feedback(motor_id)
+
+                    ''' Get current added '''
+                    try:
+                        state['current'] = self.dxl_io.get_current(motor_id)
+                    except:
+                        pass
+
                     if state:
                         motor_states.append(MotorState(**state))
+
+                        
+
                         if dynamixel_io.exception: raise dynamixel_io.exception
                 except dynamixel_io.FatalErrorCodeError, fece:
                     rospy.logerr(fece)
@@ -308,7 +318,13 @@ class SerialProxy():
                 status.values.append(KeyValue('Voltage', str(motor_state.voltage)))
                 status.values.append(KeyValue('Temperature', str(motor_state.temperature)))
                 status.values.append(KeyValue('Moving', str(motor_state.moving)))
-                
+
+                ''' Current added '''
+                try:
+                    status.values.append(KeyValue('Current', str(motor_state.current)))
+                except:
+                    pass
+
                 if motor_state.temperature >= self.error_level_temp:
                     status.level = DiagnosticStatus.ERROR
                     status.message = 'OVERHEATING'

@@ -41,7 +41,6 @@ __license__ = 'BSD'
 __maintainer__ = 'Antons Rebguns'
 __email__ = 'anton@email.arizona.edu'
 
-
 import time
 import serial
 from array import array

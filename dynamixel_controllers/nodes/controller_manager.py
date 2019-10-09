@@ -158,7 +158,7 @@ class ControllerManager:
                     status.values.append(KeyValue('Velocity', str(joint_state.velocity)))
                     status.values.append(KeyValue('Load', str(joint_state.load)))
                     status.values.append(KeyValue('Moving', str(joint_state.is_moving)))
-                    status.values.append(KeyValue('Temperature', str(max_temp)))
+                    status.values.append(KeyValue('Temperature', str(max_temp))) 
                     status.level = DiagnosticStatus.OK
                     status.message = 'OK'
                         
