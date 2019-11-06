@@ -185,7 +185,7 @@ class JointController:
         return []
 
     def process_set_d_gain(self, req):
-        self.set_i_gain(req.k_gain)
+        self.set_d_gain(req.k_gain)
         return []
 
     def process_motor_states(self, state_list):
